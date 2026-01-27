@@ -1,7 +1,7 @@
 "use client"
 
+import GameBox from "@/components/ui/games";
 import Navbar from "@/components/ui/navbar";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface gameInfo{
@@ -19,7 +19,7 @@ interface gameInfo{
   end_date: string
   users: number
   status: string
-  gamepower_url: string
+  gamerpower_url: string
   open_giveaway: string
 }
 
@@ -49,7 +49,16 @@ export default function Home() {
         {
           dataState ? <div>
             {dataState.map((key, index) => {
-              return <h1 key={index}>{dataState[index].id}</h1>
+              const currentData = dataState[index];
+              return <GameBox key={index} 
+              title={currentData.title} 
+              image={currentData.image}
+              description={currentData.description}
+              worth={currentData.worth}
+              open_giveaway={currentData.open_giveaway}
+              gamerpower_url={currentData.gamerpower_url}
+              end_date={currentData.end_date.substring(0, 11)}
+              ></GameBox>
             })}
           </div> : "loading"
         }
