@@ -2,6 +2,7 @@
 
 import GameBox from "@/components/ui/games";
 import Navbar from "@/components/ui/navbar";
+import { Spinner } from "@/components/ui/spinner";
 import { useEffect, useState } from "react";
 
 interface gameInfo{
@@ -57,10 +58,13 @@ export default function Home() {
               worth={currentData.worth}
               open_giveaway={currentData.open_giveaway}
               gamerpower_url={currentData.gamerpower_url}
-              end_date={currentData.end_date.substring(0, 11)}
+              end_date={currentData.end_date}
               ></GameBox>
             })}
-          </div> : "loading"
+          </div> : <div className="flex text-white justify-center items-center gap-10 h-screen">
+              <Spinner className="size-10"></Spinner>
+              <p className="text-4xl font-bold">Loading....</p>
+          </div>
         }
       </div>
     </div>
