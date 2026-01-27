@@ -91,7 +91,7 @@ export default function Home() {
     }
 
     {
-      (!failed && errorNumber === 201) && <div>
+      (!failed && errorNumber === 201) && <div className="text-white flex flex-col justify-center items-center h-screen"> {/* I have no idea if this works or not, fingers crossed it does */}
         <h1 className="text-3xl font-bold">No Giveaways found!</h1>
         <h2 className="text-2xl">Come back later!</h2>
       </div>
