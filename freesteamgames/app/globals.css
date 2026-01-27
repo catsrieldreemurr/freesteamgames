@@ -123,3 +123,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+@theme{
+  --color-steam: #171d25;
+  --color-steam_back: #263a53;
+}
