@@ -1,5 +1,6 @@
 "use client"
 
+import Footerbar from "@/components/ui/footer";
 import GameBox from "@/components/ui/games";
 import Navbar from "@/components/ui/navbar";
 import { Spinner } from "@/components/ui/spinner";
@@ -69,10 +70,11 @@ export default function Home() {
     {
       (!failed && errorNumber === 200) && <div>
         {
-          dataState ? <div>
+          dataState ? <div className="bg-steam_back">
             {dataState.map((key, index) => {
               const currentData = dataState[index];
-              return <GameBox key={index} 
+              return (
+              <GameBox key={index} 
               title={currentData.title} 
               image={currentData.image}
               description={currentData.description}
@@ -80,8 +82,10 @@ export default function Home() {
               open_giveaway={currentData.open_giveaway}
               gamerpower_url={currentData.gamerpower_url}
               end_date={currentData.end_date}
-              ></GameBox>
+              ></GameBox>)
             })}
+
+          <Footerbar amountOfGames={dataState.length}></Footerbar> 
           </div> : <div className="flex text-white justify-center items-center gap-10 h-screen">
               <Spinner className="size-10"></Spinner>
               <p className="text-4xl font-bold">Loading....</p>
@@ -94,6 +98,7 @@ export default function Home() {
       (!failed && errorNumber === 201) && <div className="text-white flex flex-col justify-center items-center h-screen"> {/* I have no idea if this works or not, fingers crossed it does */}
         <h1 className="text-3xl font-bold">No Giveaways found!</h1>
         <h2 className="text-2xl">Come back later!</h2>
+        <Footerbar amountOfGames={0}></Footerbar>
       </div>
     }
 
