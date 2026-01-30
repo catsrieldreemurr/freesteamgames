@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 const APICALL = "https://www.gamerpower.com/api/giveaways?platform=steam&type=game"
+const APICALL2 = "https://www.gamerpower.com/api/giveaways?platform=gog&type=game"
 
 export async function GET(){
     try{

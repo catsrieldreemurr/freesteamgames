@@ -43,20 +43,23 @@ export default function Home() {
       const res = await fetch("/api/getGames")
       const data = await res.json();
 
-      if(res.status === 200){
-        setdata(data.Data);
-        setFailed(false)
-        setErrorNumber(res.status)
-      }
-      else if (res.status == 201){
-        setFailed(false)
-        setErrorNumber(res.status)
-      }
+      try{
 
-      else if(res.status === 404 || res.status == 500){
+        if(res.status === 200 && Array.isArray(data.Data)){
+          setdata(data.Data);
+          setFailed(false)
+          setErrorNumber(res.status)
+        }
+        else{
+          setdata([]);
+          setFailed(res.status !== 200 || false);
+          setErrorNumber(res.status)
+          setErrorMessage(data.Message || 'No data returned')
+        }
+      } catch(err){
         setFailed(true)
-        setErrorNumber(res.status)
-        setErrorMessage(res.statusText)
+        setdata([])
+        setErrorNumber(500)
       }
     }
     getData()
@@ -95,7 +98,7 @@ export default function Home() {
     }
 
     {
-      (!failed && errorNumber === 201) && <div className="text-white flex flex-col justify-center items-center h-screen"> {/* I have no idea if this works or not, fingers crossed it does */}
+      (!failed && (errorNumber === 200 && dataState?.length === 0)) && <div className="text-white flex flex-col justify-center items-center h-screen"> {/* I have no idea if this works or not, fingers crossed it does */}
         <h1 className="text-3xl font-bold">No Giveaways found!</h1>
         <h2 className="text-2xl">Come back later!</h2>
         <Footerbar amountOfGames={0}></Footerbar>
