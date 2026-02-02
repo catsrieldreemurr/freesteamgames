@@ -1,13 +1,9 @@
 import Link from "next/link";
 
-interface setProps{
-    amountOfGames: number
-}
-
-export default function Footerbar({amountOfGames}:setProps){
+export default function Footerbar(){
     return (
         <footer>
-            <div className={`bg-steam2 p-5 text-white sm:flex sm:fixed inset-x-0 bottom-0`}>
+            <div className={`bg-steam2 p-5 text-white sm:flex fixed inset-x-0 bottom-0`}>
                 <div className="sm:w-1/3 flex justify-center flex-col items-center m-3">
                     <p className="text-lg font-bold underline">Created with ♡ by</p>
                     <p>CatsrielDreemurr</p>

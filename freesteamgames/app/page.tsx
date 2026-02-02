@@ -88,7 +88,7 @@ export default function Home() {
               ></GameBox>)
             })}
 
-          <Footerbar amountOfGames={dataState.length}></Footerbar> 
+        <div className={`${(errorNumber === 200 && dataState?.length === 0) && 'hidden'}`}><Footerbar></Footerbar> </div>
           </div> : <div className="flex text-white justify-center items-center gap-10 h-screen">
               <Spinner className="size-10"></Spinner>
               <p className="text-4xl font-bold">Loading....</p>
@@ -98,10 +98,10 @@ export default function Home() {
     }
 
     {
-      (!failed && (errorNumber === 200 && dataState?.length === 0)) && <div className="text-white flex flex-col justify-center items-center h-screen"> {/* I have no idea if this works or not, fingers crossed it does */}
+      (!failed && (errorNumber === 200 && dataState?.length === 0)) && <div className="text-white flex flex-col justify-center items-center h-screen bg-steam_back"> {/* I have no idea if this works or not, fingers crossed it does */}
         <h1 className="text-3xl font-bold">No Giveaways found!</h1>
         <h2 className="text-2xl">Come back later!</h2>
-        <Footerbar amountOfGames={0}></Footerbar>
+        <Footerbar></Footerbar>
       </div>
     }
 
